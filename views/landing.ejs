@@ -1,0 +1,15 @@
+<%- include('partials/header', { title: "Home" }) %>
+    <h1>Landing Page</h1>
+    <h2>Welcome, (Username goes here)</h2>
+    <p>This is your personal dashboard where you can view exclusive content.</p>
+      <h3>Your Recent Activity</h3>
+      <ul>
+        <li>Completed task: Profile update</li>
+        <li>Viewed course: Introduction to Node.js</li>
+        <li>Completed task: Security training</li>
+        <li>Submitted project: JavaScript Quiz App</li>
+      </ul>
+      <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+      </form>
+<%- include('partials/footer') %>
