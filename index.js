@@ -55,11 +55,19 @@ app.post("/login", (request, response) => {
       return response.redirect('/login?error=Invalid email or password');
     }
 
+    const userrole = [];
+    for (let index = 0; index < USERS.length; index++) {
+        if (USERS[index].role === 'user') {
+            userrole.push(USERS[index]);
+        }
+    }
+
+
     if(user.role === 'admin') {
-        return response.redirect('/adminlanding');
+        return response.render('adminlanding', { users: userrole });
     }
     if(user.role === 'user') {
-        return response.redirect('/landing');
+        return response.render('landing', { nameofuser: user });
     }
 });
 
@@ -76,7 +84,10 @@ app.post("/signup", (request, response) => {
       return response.status(400).render('signup', {errorMessage: 'Username is taken'});
     }
 
-    USERS.push({ id: USERS.id + 1, username, email, password: bcrypt.hashSync(password, SALT_ROUNDS), role: 'user' });
+    let length = USERS.length - 1;
+    let lastuser = USERS[length];
+    console.log(lastuser);
+    USERS.push({ id: lastuser.id + 1, username, email, password: bcrypt.hashSync(password, SALT_ROUNDS), role: 'user' });
     console.log(USERS);
     return response.redirect('/');
 });

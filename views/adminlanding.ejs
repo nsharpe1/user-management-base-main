@@ -1,5 +1,8 @@
 <%- include('partials/header', { title: "Home" }) %>
     <h1>Admin Landing Page</h1>
+    <% users.forEach((user) => { %>
+        <p><%= user.email %>, <%= user.role %></p>
+    <% }) %>
     <form action="/logout" method="post">
         <button type="submit">Logout</button>
     </form>
